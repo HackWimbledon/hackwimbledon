@@ -16,7 +16,7 @@ hbs.registerHelper('active',function(mypath) {
   return "";
 });
 
-
+hbs.registerPartials(__dirname + '/partials');
 
 app.get('/', function(req, res) {
   res.render('welcome', {
