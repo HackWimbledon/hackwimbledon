@@ -5,7 +5,12 @@
       background-size: cover;
       background-position: center;
       text-shadow: 0px 2px 2px black;
+	  padding-left: 10px;
+	  padding-right: 10px;
     }
+  .btn {
+      white-space: normal;
+	}  
 }
 
 /* Small */
