@@ -51,6 +51,19 @@
 
   {{{body}}}
 
+   <div class="container">
+	{{#if errorFlash}}
+ 	<div class="alert alert-danger">
+		<strong>ALERT:</strong> {{ errorFlash }}
+	</div>
+	{{/if}}
+	{{#if infoFlash}}
+ 	<div class="alert alert-info">
+		<strong>ALERT:</strong> {{ infoFlash }}
+	</div>
+	{{/if}}
+   </div>
+
 </body>
 
 </html>
