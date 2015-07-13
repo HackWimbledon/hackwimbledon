@@ -5,6 +5,13 @@
 var express = require('express');
 var app = express();
 var hbs = require('hbs');
+var request = require('request');
+var config = require('./config');
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 
 app.set('view engine', 'hbs');
 app.set('view options', {
@@ -19,8 +26,6 @@ hbs.registerHelper('active',function(mypath) {
   }
   return "";
 });
-
-
 
 app.get('/', function(req, res) {
   res.render('welcome', {
@@ -55,6 +60,33 @@ app.get('/chat',function(req, res) {
     title: 'HackWimbledon Chat',
     path: req.path
   })
+});
+
+app.post('/chat', function(req, res) {
+  if (req.body.slackemail) {
+    request.post({
+        url: 'https://'+ config.slackUrl + '/api/users.admin.invite',
+        form: {
+          email: req.body.slackemail,
+          token: config.slacktoken,
+          set_active: true
+        }
+      }, function(err, httpResponse, body) {
+        // body looks like:
+        //   {"ok":true}
+        //       or
+        //   {"ok":false,"error":"already_invited"}
+        if (err) { return res.send('Error:' + err); }
+        body = JSON.parse(body);
+        if (body.ok) {
+          res.send('Success! Check "'+ req.body.slackemail +'" for an invite from Slack.');
+        } else {
+          res.send('Failed! ' + body.error)
+        }
+      });
+  } else {
+    res.status(400).send('email is required.');
+  }
 });
 
 app.get('/projects',function(req, res) {
