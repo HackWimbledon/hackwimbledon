@@ -5,13 +5,20 @@
 var express = require('express');
 var app = express();
 var hbs = require('hbs');
+var request = require('request');
+var config = require('./config');
+
+
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var flash = require('express-flash');
+
+var sessionStore = new session.MemoryStore;
 
 app.set('view engine', 'hbs');
 app.set('view options', {
   layout: 'layouts/main.hbs'
 });
-
-app.use(express.static(__dirname + "/public"));
 
 hbs.registerHelper('active',function(mypath) {
   if(mypath==this.path) {
@@ -20,13 +27,48 @@ hbs.registerHelper('active',function(mypath) {
   return "";
 });
 
+app.use(cookieParser());
+app.use(session({
+    cookie: { maxAge: 60000 },
+    store: sessionStore,
+    saveUninitialized: true,
+    resave: 'true',
+    secret: 'secret'
+}));
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+app.use(express.static(__dirname + "/public"));
+
+app.use(flash());
+
+
+
+// TEST ROUTES
+
+// Route that creates a flash message using the express-flash module
+app.all('/flash-info', function( req, res ) {
+    req.flash('info', 'This is an information message using the express-flash module.');
+    res.redirect(301, '/');
+});
+
+app.all('/flash-error', function( req, res ) {
+    req.flash('error', 'This is an error message using the express-flash module.');
+    res.redirect(301, '/');
+});
+
+// END OF TEST ROUTES
 
 
 app.get('/', function(req, res) {
   res.render('welcome', {
     title: 'Welcome',
-    path: req.path
-   });
+    path: req.path,
+    infoFlash: req.flash('info'),
+    errorFlash: req.flash('error'),
+    })
 });
 
 app.get('/home', function(req, res) {
@@ -53,8 +95,51 @@ app.get('/events',function(req, res) {
 app.get('/chat',function(req, res) {
   res.render('chat', {
     title: 'HackWimbledon Chat',
-    path: req.path
+    path: req.path,
+    infoFlash: req.flash('info'),
+    errorFlash: req.flash('error')
   })
+});
+
+app.post('/chat', function(req, res) {
+  if (req.body.slackemail) 
+  {
+    request.post({
+        url: 'https://'+ config.slackUrl + '/api/users.admin.invite',
+        form: {
+          email: req.body.slackemail,
+          token: config.slacktoken,
+          set_active: true
+        }
+      }, function(err, httpResponse, body) 
+         {
+           // body looks like:
+           //   {"ok":true}
+           //       or
+           //   {"ok":false,"error":"already_invited"}
+           if (err) 
+           {
+             req.flash('error', 'Error: ' + err);
+             return res.redirect(301, '/chat'); 
+           }
+           body = JSON.parse(body);
+           if (body.ok) 
+           {
+             req.flash('info', 'Success! Check "'+ req.body.slackemail +'" for an invite from Slack.');
+             return res.redirect(301, '/chat'); 
+
+           } 
+           else 
+           {
+             req.flash('error', 'Failed: ' + body.error);
+             return res.redirect(301, '/chat'); 
+           }
+         });
+  } 
+  else 
+  {
+    res.status(400).send('email is required.');
+  }
 });
 
 app.get('/projects',function(req, res) {
@@ -72,3 +157,4 @@ app.get('/resources',function(req, res) {
 });
 
 app.listen(3000);
+
