@@ -46,28 +46,10 @@ app.use(flash());
 
 
 
-// TEST ROUTES
-
-// Route that creates a flash message using the express-flash module
-app.all('/flash-info', function( req, res ) {
-    req.flash('info', 'This is an information message using the express-flash module.');
-    res.redirect(301, '/');
-});
-
-app.all('/flash-error', function( req, res ) {
-    req.flash('error', 'This is an error message using the express-flash module.');
-    res.redirect(301, '/');
-});
-
-// END OF TEST ROUTES
-
-
 app.get('/', function(req, res) {
   res.render('welcome', {
     title: 'Welcome',
-    path: req.path,
-    infoFlash: req.flash('info'),
-    errorFlash: req.flash('error'),
+    path: req.path
     })
 });
 
