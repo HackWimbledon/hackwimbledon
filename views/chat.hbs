@@ -2,9 +2,12 @@
 
 	<div class="row">
 
+		<div class="col-md-12">
+			<h1>Chat with the HackWimbledon community</h1>
+		</div>
+
 		<div class="col-md-9">
 
-			<h1>Chat with the HackWimbledon community</h1>
 			<p>
 				HackWimbledon uses Slack as the messaging app for our community.
 		    	It gives us real-time chat, instant search and everything we 
@@ -22,16 +25,14 @@
 				The process is automated and the invitation will be in your inbox within minutes.
 			</p>
 			<br>
+			
+			<img style="img-responsive center-block" src="/img/slack-desktop-small.png"></img>
+			<br>
 			<br>
 
-
-		<img style="img-responsive center-block" src="/img/slack-desktop-small.png"></img>
-		<p>
-		<p>
-     	
 		</div>	
 
-		<div class="col-md-3">
+		<div class="col-md-3 text-center">
 
 	   		<img style="img-responsive center-block" src="/img/slack-mobile-small.png"></img>	
 
@@ -51,7 +52,7 @@
 
 		<div class="col-md-12">
 
-			<h3>Join the HackWimbledon community on Slack</h3>
+			<h3>Join HackWimbledon on Slack</h3>
 
 			<div class="panel panel-default">
 				<div class="panel-body">
@@ -59,9 +60,12 @@
 					<form method="POST" action="chat">
 		  				<div class="form-group">
 		    					<label for="email">Enter your email address</label>
-		    					<input type="email" class="form-control" name="slackemail" placeholder="Email">
+		    					<div class="input-group input-group-lg">
+		    						<input type="email" class="form-control" name="slackemail" placeholder="Email" aria-describedby="slack-addon">
+		    						<span class="input-group-addon" id="slack-addon"><img src="/img/slack.jpg"></img></span>
+		    					</div>
 		  				</div>
-		  				<button type="submit" class="btn btn-default">Request invitation</button>
+		  				<button type="submit" class="btn btn-primary btn-lg">Request invitation</button>
 					</form>
 				</div>
 			</div>
