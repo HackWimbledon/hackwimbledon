@@ -1,23 +1,69 @@
 <div class="container">
 
-	<h1>Chat</h1>
+	<div class="row">
 
-	<p>Some text here to explain about Slack and encourage people to sign up<p>
-	<p>Some text here to explain about Slack and encourage people to sign up<p>
-	<p>Some text here to explain about Slack and encourage people to sign up<p>	
-	<p>Some text here to explain about Slack and encourage people to sign up<p>
+		<div class="col-md-12">
 
-	<h3>Join the HackWimbledon community on Slack</h3>
+			<h1>Chat with the HackWimbledon community</h1>
+		
+		</div>
 
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<form method="POST" action="chat">
-  				<div class="form-group">
-    					<label for="email">Enter your email address</label>
-    					<input type="email" class="form-control" name="slackemail" placeholder="Email">
-  				</div>
-  				<button type="submit" class="btn btn-default">Request invitation</button>
-			</form>
+		<div class="col-md-9">
+
+			<p>
+				HackWimbledon uses <a href="http://www.slack.com">Slack</a> as the messaging app for our community.
+		    	It gives us real-time chat, instant search and everything we 
+				need is on once place.  Plus it's free to use!
+			</p>
+			<p>
+				Slack is not just for messages. We share files, images, links and documents just 
+				by dropping them into Slack and adding our comments.
+			</p>
+			<p>
+				You can access Slack from the web, Android and iOS.
+			</p>
+			<p>
+				Want to join HackWimbledon on Slack?  Use the form below to request an invitation. 
+				The process is automated and the invitation will be in your inbox within minutes.
+			</p>
+			<br>
+			
+			<img style="img-responsive center-block" src="/img/slack-desktop-small.png"></img>
+			<br>
+			<br>
+
+		</div>	
+
+		<div class="col-md-3 text-center">
+
+	   		<img style="img-responsive center-block" src="/img/slack-mobile-small.png"></img>	
+
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-12">
+
+			<h3>Join HackWimbledon on Slack</h3>
+
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<a name="slackform"></a>
+					<form method="POST" action="chat">
+		  				<div class="form-group">
+		    					<label for="email">Enter your email address</label>
+		    					<div class="input-group input-group-lg">
+		    						<input type="email" class="form-control" name="slackemail" placeholder="Email" aria-describedby="slack-addon">
+		    						<span class="input-group-addon" id="slack-addon"><img src="/img/slack.jpg"></img></span>
+		    					</div>
+		  				</div>
+		  				<button type="submit" class="btn btn-primary btn-lg">Request invitation</button>
+					</form>
+				</div>
+			</div>
+
 		</div>
 	</div>
 

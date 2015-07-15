@@ -115,13 +115,13 @@ app.post('/chat', function(req, res) {
              {
                req.flash('error', 'Unable to contact Slack.  Please contact Hackwimbledon and report "' + error + '".');
              }   
-	     return res.redirect(301, '/chat'); 
+	     return res.redirect(301, '/chat#slackform'); 
            }
            body = JSON.parse(body);
            if (body.ok) 
            {
              req.flash('info', 'Success! Check "'+ req.body.slackemail +'" for an invitation from Slack.');
-             return res.redirect(301, '/chat'); 
+             return res.redirect(301, '/chat#slackform'); 
 
            } 
            else 
@@ -150,7 +150,7 @@ app.post('/chat', function(req, res) {
              {
                req.flash('error', 'Problem connecting to Slack.  Please contact Hackwimbledon and report "' + body.error + '".');
              }
-             return res.redirect(301, '/chat'); 
+             return res.redirect(301, '/chat#slackform'); 
            }
          });
   } 
