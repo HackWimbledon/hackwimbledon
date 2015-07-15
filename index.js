@@ -86,6 +86,11 @@ app.get('/chat',function(req, res) {
 app.post('/chat', function(req, res) {
   if (req.body.slackemail) 
   {
+    // 
+    // Sources used for Slack API call:
+    // https://github.com/outsideris/slack-invite-automation
+    // https://levels.io/slack-typeform-auto-invite-sign-ups/
+    //
     request.post({
         url: 'https://'+ config.slackUrl + '/api/users.admin.invite',
         form: {
@@ -136,6 +141,10 @@ app.post('/chat', function(req, res) {
              else if (body.error.search("already_invited") >= 0)
              {
                req.flash('error', 'An invitation has already been requested for that email address.');
+             }
+             else if (body.error.search("invalid_email") >= 0)
+             {
+               req.flash('error', 'Slack does not like the format of that email address. Please try again.');
              }
              else
              {
