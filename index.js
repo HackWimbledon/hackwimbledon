@@ -137,6 +137,10 @@ app.post('/chat', function(req, res) {
              {
                req.flash('error', 'An invitation has already been requested for that email address.');
              }
+             else if (body.error.search("invalid_email") >= 0)
+             {
+               req.flash('error', 'Slack does not like the format of that email address. Please try again.');
+             }
              else
              {
                req.flash('error', 'Problem connecting to Slack.  Please contact Hackwimbledon and report "' + body.error + '".');
