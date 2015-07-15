@@ -10,5 +10,6 @@ module.exports = {
   //   curl -X POST 'https://YOUR-SLACK-TEAM.slack.com/api/users.admin.invite' \
   //   --data 'email=EMAIL&token=TOKEN&set_active=true' \
   //   --compressed
-  slacktoken: process.env.SLACK_TOKEN || ''
+  slacktoken: process.env.SLACK_TOKEN || '',
+  listenport: process.env.HW_PORT || 3000
 };
