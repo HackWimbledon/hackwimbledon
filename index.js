@@ -45,7 +45,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(flash());
 
 
-
 app.get('/', function(req, res) {
   res.render('welcome', {
     title: 'Welcome to HackWimbledon',
@@ -174,5 +173,25 @@ app.get('/resources',function(req, res) {
     path: req.path
   })
 });
+
+// Handle 404
+app.use(function(req, res) {
+  res.status(400);
+  res.render('404', {
+    title: '404: Page Not Found',
+    path: req.path
+    });
+});
+
+// Handle 500
+app.use(function(error, req, res, next) {
+  res.status(500);
+  res.render('500', {
+    title:'500: Internal Server Error', 
+    error: error,
+    path: req.path
+    });
+});
+
 
 app.listen(config.listenport);
