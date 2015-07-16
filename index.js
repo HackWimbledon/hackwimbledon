@@ -48,7 +48,7 @@ app.use(flash());
 
 app.get('/', function(req, res) {
   res.render('welcome', {
-    title: 'Welcome',
+    title: 'Welcome to HackWimbledon',
     path: req.path
     })
 });
@@ -109,11 +109,11 @@ app.post('/chat', function(req, res) {
              var error = String(err);
              if (error.search("Invalid URI") >= 0)
              {
-               req.flash('error', 'Unable to contact Slack.  Please contact Hackwimbledon and report "Slack invalid URI".');
+               req.flash('error', 'Unable to contact Slack.  Please contact HackWimbledon and report "Slack invalid URI".');
              }
              else
              {
-               req.flash('error', 'Unable to contact Slack.  Please contact Hackwimbledon and report "' + error + '".');
+               req.flash('error', 'Unable to contact Slack.  Please contact HackWimbledon and report "' + error + '".');
              }
 	     return res.redirect(301, '/chat#slackform');
            }
@@ -128,11 +128,11 @@ app.post('/chat', function(req, res) {
            {
              if (body.error.search("Invalid URI") >= 0)
              {
-               req.flash('error', 'Unable to contact Slack.  Please contact Hackwimbledon and report "Slack invalid URI".');
+               req.flash('error', 'Unable to contact Slack.  Please contact HackWimbledon and report "Slack invalid URI".');
              }
              else if (body.error.search("not_authed") >= 0)
              {
-               req.flash('error', 'Unable to contact Slack.  Please contact Hackwimbledon and report "Slack not authorised".');
+               req.flash('error', 'Unable to contact Slack.  Please contact HackWimbledon and report "Slack not authorised".');
              }
              else if (body.error.search("already_in_team") >= 0)
              {
@@ -148,7 +148,7 @@ app.post('/chat', function(req, res) {
              }
              else
              {
-               req.flash('error', 'Problem connecting to Slack.  Please contact Hackwimbledon and report "' + body.error + '".');
+               req.flash('error', 'Problem connecting to Slack.  Please contact HackWimbledon and report "' + body.error + '".');
              }
              return res.redirect(301, '/chat#slackform');
            }
@@ -156,7 +156,8 @@ app.post('/chat', function(req, res) {
   }
   else
   {
-    res.status(400).send('email is required.');
+    req.flash('error', 'Please enter an email address.');
+    return res.redirect(301, '/chat#slackform');
   }
 });
 
