@@ -8,6 +8,7 @@ var hbs = require('hbs');
 var request = require('request');
 var config = require('./config');
 
+
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var flash = require('express-flash');
@@ -19,7 +20,6 @@ app.set('view options', {
   layout: 'layouts/main.hbs'
 });
 
-var port=
 hbs.registerHelper('active',function(mypath) {
   if(mypath==this.path) {
     return "active";
@@ -84,8 +84,13 @@ app.get('/chat',function(req, res) {
 });
 
 app.post('/chat', function(req, res) {
-  if (req.body.slackemail)
+  if (req.body.slackemail) 
   {
+    // 
+    // Sources used for Slack API call:
+    // https://github.com/outsideris/slack-invite-automation
+    // https://levels.io/slack-typeform-auto-invite-sign-ups/
+    //
     request.post({
         url: 'https://'+ config.slackUrl + '/api/users.admin.invite',
         form: {
@@ -93,13 +98,13 @@ app.post('/chat', function(req, res) {
           token: config.slacktoken,
           set_active: true
         }
-      }, function(err, httpResponse, body)
+      }, function(err, httpResponse, body) 
          {
            // body looks like:
            //   {"ok":true}
            //       or
            //   {"ok":false,"error":"already_invited"}
-           if (err)
+           if (err) 
            {
              var error = String(err);
              if (error.search("Invalid URI") >= 0)
@@ -109,17 +114,17 @@ app.post('/chat', function(req, res) {
              else
              {
                req.flash('error', 'Unable to contact Slack.  Please contact Hackwimbledon and report "' + error + '".');
-             }
-	     return res.redirect(301, '/chat');
+             }   
+	     return res.redirect(301, '/chat#slackform'); 
            }
            body = JSON.parse(body);
-           if (body.ok)
+           if (body.ok) 
            {
              req.flash('info', 'Success! Check "'+ req.body.slackemail +'" for an invitation from Slack.');
-             return res.redirect(301, '/chat');
+             return res.redirect(301, '/chat#slackform'); 
 
-           }
-           else
+           } 
+           else 
            {
              if (body.error.search("Invalid URI") >= 0)
              {
@@ -137,15 +142,19 @@ app.post('/chat', function(req, res) {
              {
                req.flash('error', 'An invitation has already been requested for that email address.');
              }
+             else if (body.error.search("invalid_email") >= 0)
+             {
+               req.flash('error', 'Slack does not like the format of that email address. Please try again.');
+             }
              else
              {
                req.flash('error', 'Problem connecting to Slack.  Please contact Hackwimbledon and report "' + body.error + '".');
              }
-             return res.redirect(301, '/chat');
+             return res.redirect(301, '/chat#slackform'); 
            }
          });
-  }
-  else
+  } 
+  else 
   {
     res.status(400).send('email is required.');
   }
@@ -165,4 +174,5 @@ app.get('/resources',function(req, res) {
   })
 });
 
-app.listen(config.listenport);
+app.listen(3000);
+
