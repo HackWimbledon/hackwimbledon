@@ -1,0 +1,44 @@
+[
+    {
+      "category-title" : "Arduino",
+      "category-description" : "The best development board to come out of Italy",
+      "category-links" : [
+        {
+          "link-title" : "First resource",
+          "link-description" : "Here is some text about the resource",
+          "link-url" : "http://google.com"
+        },
+        {
+          "link-title" : "Another resource",
+          "link-description" : "More blurb to get you interested",
+          "link-url" : "http://twitter.com"
+        },
+        {
+          "link-title" : "Yet another resource",
+          "link-description" : "You get the idea",
+          "link-url" : "http://amazon.com"
+        }
+      ]
+    },
+    {
+      "category-title" : "Raspberry Pi",
+      "category-description" : "The best Linux computer to come out of Cambridge",
+      "category-links" : [
+        {
+          "link-title" : "Different resource",
+          "link-description" : "I'm getting bored",
+          "link-url" : "http://ebay.com"
+        },
+        {
+          "link-title" : "Nearly there",
+          "link-description" : "More blurb to get you interested; I'm losing the will to type",
+          "link-url" : "http://faceboook.com"
+        },
+        {
+          "link-title" : "Last resource",
+          "link-description" : "There you go, I have run out of ideas",
+          "link-url" : "http://speedof.me"
+        }
+      ]
+    }
+  ]
