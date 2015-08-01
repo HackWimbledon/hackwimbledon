@@ -9,6 +9,10 @@ var request = require('request');
 var config = require('./config');
 
 
+var fs = require('fs');
+var resourcedata = JSON.parse(fs.readFileSync('./data_sources/data.json', 'utf8'));
+
+
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var flash = require('express-flash');
@@ -170,6 +174,7 @@ app.get('/projects',function(req, res) {
 app.get('/resources',function(req, res) {
   res.render('resources', {
     title: 'HackWimbledon Resources',
+    resources: resourcedata,
     path: req.path
   })
 });
