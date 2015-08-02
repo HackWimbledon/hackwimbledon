@@ -10,7 +10,7 @@ var config = require('./config');
 
 
 var fs = require('fs');
-var resourcedata = JSON.parse(fs.readFileSync('./data_sources/data.json', 'utf8'));
+var resourcedata = JSON.parse(fs.readFileSync('./data_sources/resources.json', 'utf8'));
 
 
 var cookieParser = require('cookie-parser');
@@ -192,7 +192,7 @@ app.use(function(req, res) {
 app.use(function(error, req, res, next) {
   res.status(500);
   res.render('500', {
-    title:'500: Internal Server Error', 
+    title:'500: Internal Server Error',
     error: error,
     path: req.path
     });
