@@ -1,12 +1,12 @@
 [
     {
       "category-title" : "Arduino",
-      "category-description" : "The best development board to come out of Italy",
+      "category-description" : "VHS Williamsburg asymmetrical, hella swag organic pickled bitters stumptown polaroid fanny pack cardigan food truck master cleanse ethical. Meditation taxidermy lumbersexual cronut, fashion axe authentic Bushwick blog Tumblr.",
       "category-links" : [
         {
-          "link-title" : "First resource",
+          "link-title" : "MQTT and REST library for Arduino + ESP8266",
           "link-description" : "Here is some text about the resource",
-          "link-url" : "http://google.com"
+          "link-url" : "http://tuanpm.net/rock-solid-esp8266-wifi-mqtt-restful-client-for-arduino/"
         },
         {
           "link-title" : "Another resource",
@@ -22,7 +22,7 @@
     },
     {
       "category-title" : "Raspberry Pi",
-      "category-description" : "The best Linux computer to come out of Cambridge",
+      "category-description" : "Not convinced that the page needs these descriptions of the categories.  Do they add anything?",
       "category-links" : [
         {
           "link-title" : "Different resource",
