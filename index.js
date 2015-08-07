@@ -24,6 +24,8 @@ app.set('view options', {
   layout: 'layouts/main.hbs'
 });
 
+hbs.registerPartials(__dirname + '/views/partials');
+
 hbs.registerHelper('active',function(mypath) {
   if(mypath==this.path) {
     return "active";
@@ -39,6 +41,27 @@ app.use(session({
     resave: 'true',
     secret: 'secret'
 }));
+
+global.eventStore={};
+populateEventStore();
+
+function populateEventStore() {
+  var apiurl="https://api.meetup.com/2/events?page=30&status=upcoming,past&time=-3m,3m&key="+config.meetupapikey+"&group_urlname="+config.meetupgroup+"&sign=true";
+  //var evts={};
+  request(apiurl, function(error, response, body) {
+    var jj=JSON.parse(body);
+    console.log(jj.meta.signed_url);
+    request(jj.meta.signed_url,function(error, response, eventsjson) {
+        console.log(JSON.parse(eventsjson).results);
+      global.eventStore = JSON.parse(eventsjson).results;
+    });
+  });
+}
+
+function getEvents() {
+  // Test for refresh - TODO
+  return global.eventStore;
+}
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -73,7 +96,8 @@ app.get('/about',function(req, res) {
 app.get('/events',function(req, res) {
   res.render('events', {
     title: 'HackWimbledon Events',
-    path: req.path
+    path: req.path,
+    meetupevents: getEvents()
   })
 });
 
