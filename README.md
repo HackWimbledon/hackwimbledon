@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/codepope/hackwimbledon.png?label=ready&title=Ready)](https://waffle.io/codepope/hackwimbledon)
 # hackwimbledon
 The HackWimbledon website application
 
