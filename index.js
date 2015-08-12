@@ -16,6 +16,11 @@ var resourcedata = JSON.parse(fs.readFileSync('./data_sources/resources.json', '
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var flash = require('express-flash');
+var dateFormat = require('dateformat');
+var linq=require('linq');
+
+var eventsApp=require('./event-app.js')(config,request,dateFormat,linq);
+eventsApp.getEvents();
 
 var sessionStore = new session.MemoryStore;
 
@@ -33,6 +38,16 @@ hbs.registerHelper('active',function(mypath) {
   return "";
 });
 
+hbs.registerHelper('hbDateFormat',function(somedate) {
+  return new hbs.SafeString(dateFormat(somedate,"dddd, mmmm dS, yyyy @ HH:MM"));
+});
+hbs.registerHelper('hbStringify',function(somejson) {
+  return JSON.stringify(somejson);
+});
+hbs.registerHelper('hbDateFormatShort',function(somedate) {
+  return new hbs.SafeString(dateFormat(somedate,"dddd, mmmm dS, yyyy"));
+});
+
 app.use(cookieParser());
 app.use(session({
     cookie: { maxAge: 60000 },
@@ -41,27 +56,6 @@ app.use(session({
     resave: 'true',
     secret: 'secret'
 }));
-
-global.eventStore={};
-populateEventStore();
-
-function populateEventStore() {
-  var apiurl="https://api.meetup.com/2/events?page=30&status=upcoming,past&time=-3m,3m&key="+config.meetupapikey+"&group_urlname="+config.meetupgroup+"&sign=true";
-  //var evts={};
-  request(apiurl, function(error, response, body) {
-    var jj=JSON.parse(body);
-    console.log(jj.meta.signed_url);
-    request(jj.meta.signed_url,function(error, response, eventsjson) {
-        console.log(JSON.parse(eventsjson).results);
-      global.eventStore = JSON.parse(eventsjson).results;
-    });
-  });
-}
-
-function getEvents() {
-  // Test for refresh - TODO
-  return global.eventStore;
-}
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -94,10 +88,12 @@ app.get('/about',function(req, res) {
 });
 
 app.get('/events',function(req, res) {
+  
   res.render('events', {
     title: 'HackWimbledon Events',
     path: req.path,
-    meetupevents: getEvents()
+    eventsApp: eventsApp,
+    hello:'hello'
   })
 });
 
