@@ -22,16 +22,17 @@
                 		<span class="h3">{{ category-title }}</span>
                 	</header>
                 	<div class="panel-body">
-                		{{ category-description }}
+                		{{#if category-image}}<img src='{{category-image}}' class="category-image"/>{{/if}}
+				{{ category-description }}
               		</div>
 			        <ul class="list-group">
 			        	{{#each category-links}}
 			                <li class="list-group-item">
 			                	<span class="h4"><strong>{{this.link-title}}</strong></span>
 			                	<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-			                	<a class="" href="{{ this.link-url }}"><strong>{{ this.link-url }}</strong></a>
+			                	<a class="" target=_blank href="{{ this.link-url }}"><strong>{{ this.link-url }}</strong></a>
 			                	<p>
-			                	{{this.link-description}}
+			                	{{{this.link-description}}}
 			                </li>
 			            {{/each}}
 			        </ul>

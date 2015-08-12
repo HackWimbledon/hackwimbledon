@@ -1,0 +1,11 @@
+.resources-container{
+
+}
+.resources-container .category-image{
+width:100%;
+overflow:hidden;
+}
+.resources-container .panel-heading .h3{
+	font-size:1.5em;
+	font-family: 'Lobster', cursive;
+}
