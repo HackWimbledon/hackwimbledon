@@ -16,6 +16,11 @@ var resourcedata = JSON.parse(fs.readFileSync('./data_sources/resources.json', '
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var flash = require('express-flash');
+var dateFormat = require('dateformat');
+var linq=require('linq');
+
+var eventsApp=require('./event-app.js')(config,request,dateFormat,linq);
+eventsApp.getEvents();
 
 var sessionStore = new session.MemoryStore;
 
@@ -24,11 +29,23 @@ app.set('view options', {
   layout: 'layouts/main.hbs'
 });
 
+hbs.registerPartials(__dirname + '/views/partials');
+
 hbs.registerHelper('active',function(mypath) {
   if(mypath==this.path) {
     return "active";
   }
   return "";
+});
+
+hbs.registerHelper('hbDateFormat',function(somedate) {
+  return new hbs.SafeString(dateFormat(somedate,"dddd, mmmm dS, yyyy @ HH:MM"));
+});
+hbs.registerHelper('hbStringify',function(somejson) {
+  return JSON.stringify(somejson);
+});
+hbs.registerHelper('hbDateFormatShort',function(somedate) {
+  return new hbs.SafeString(dateFormat(somedate,"dddd, mmmm dS, yyyy"));
 });
 
 app.use(cookieParser());
@@ -71,9 +88,12 @@ app.get('/about',function(req, res) {
 });
 
 app.get('/events',function(req, res) {
+  
   res.render('events', {
     title: 'HackWimbledon Events',
-    path: req.path
+    path: req.path,
+    eventsApp: eventsApp,
+    hello:'hello'
   })
 });
 

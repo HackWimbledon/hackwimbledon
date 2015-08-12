@@ -1,0 +1,91 @@
+
+.events-container h1{
+
+}
+.events-container .meetup-logo{
+height:0.8em;
+margin-top:-5px;
+margin-right:5px;
+}
+.events-container .current{
+	float:none;
+	width:100%;
+}
+
+.events-container .upcoming,.events-container .previous{
+	float:left;
+	width:50%;
+}
+
+
+.events-container .evt-calendar{
+	list-style-type:none;
+	margin:0px;
+	padding:0px;
+}
+.events-container .evt-calendar .event-time{
+	font-size:0.9em;
+	font-weight:800;
+}
+.events-container .event-title{
+	font-size:1.5em;
+	font-family: 'Lobster', cursive;
+}
+.events-container h3{
+font-weight:900;
+}
+@media(max-width:767px){
+
+}
+@media(max-width:400px){
+.events-container .meetup-logo{
+display:none;
+}
+.events-container .evt-calendar{
+padding-bottom:8px;
+}
+.events-container h3{
+	font-weight:700;
+	color:#444;
+	width:100%;
+
+}
+.events-container .upcoming,.events-container .previous{
+	float:left;
+	width:100%;
+}
+.events-container .evt-calendar .event-time{
+	font-size:1em;
+}
+.events-container .evt-calendar .event-title{
+	font-size:1em;
+}
+	.events-container .evt-calendar .event-description{
+		display:none;
+	}
+.events-container .upcoming .evt-calendar li, .events-container .previous .evt-calendar li{
+	margin-bottom:10px;
+}
+  
+}
+
+/* Small */
+@media(min-width:768px) and (max-width:991px){
+ 
+}
+
+/* Medium */
+@media(min-width:992px) and (max-width:1199px){
+ .events-container .upcoming,.events-container .previous{
+	float:left;
+	width:100%;
+}
+}
+
+/* Large */
+@media(min-width:1200px){
+.events-container .upcoming,.events-container .previous{
+	float:left;
+	width:100%;
+}
+}
