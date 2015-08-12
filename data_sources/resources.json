@@ -1,11 +1,11 @@
 [
     {
       "category-title" : "Arduino",
-      "category-description" : "The best development board to come out of Italy",
+      "category-description" : "One of the original hobby microcontroller boards. Originally from Italy, and open sourced so you can get loads of boards which are based on Arduino. Be careful about getting too cheap as you will most likely not be able to return them.",
       "category-links" : [
         {
-          "link-title" : "It all starts here...",
-          "link-description" : "The Arduino home page",
+          "link-title" : "Arduino.cc",
+          "link-description" : "The home of arduino development and production",
           "link-url" : "http://arduino.cc"
         },
         {
