@@ -29,6 +29,10 @@ Browse localhost:3000
 We recommend you fork the project and do your changes on that fork.
 When you have changes to give back please submit a pull request.
 
+Backbone links
+http://niki4810.github.io/blog/2013/03/02/new-post/
+
+
 ***********************
 Changelog
 ***********************
