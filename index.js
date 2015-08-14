@@ -87,6 +87,8 @@ app.get('/about',function(req, res) {
 });
 
 app.get('/events',function(req, res) {
+  // Call getEvents - this now returns the full event list, currentEvent (singular - could just
+  // be the nextEvent), futureEvents and pastEvents. These are all handed over for rendering.
   eventsApp.getEvents(function(events,currentEvent,futureEvents,pastEvents) {
     res.render('events', {
       title: 'HackWimbledon Events',

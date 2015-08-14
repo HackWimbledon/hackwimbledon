@@ -5,6 +5,8 @@ module.exports = function(config,request,dateFormat,linq){
   var self=this;
 
   function retrieveEvents(callback) {
+    // Retrieves the events from meetup, updating the stored version in the process
+    // and then sends the event data on to the callback given
     var apiurl="https://api.meetup.com/2/events?page=30&status=upcoming,past&time=-3m,3m&key="+config.meetupapikey+"&group_urlname="+config.meetupgroup+"&sign=true";
     request(apiurl, function(error, response, body) {
       var jj=JSON.parse(body);
@@ -33,6 +35,9 @@ module.exports = function(config,request,dateFormat,linq){
   }
 
   function getEvents(callback) {
+      // Just calls updateEvents and lets that work out whether it should. Gets back the
+      // full list of events which it then parses into the three other event lists,
+      // current/next, future and past and returns them via a callback
     	updateEvents(function(currEvents) {
         dt=(new Date()).getTime();
         currentEvent=(linq.from(currEvents).where("e=>e.time>"+dt).toArray())[0];
