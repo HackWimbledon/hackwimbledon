@@ -28,3 +28,9 @@ Browse localhost:3000
 
 We recommend you fork the project and do your changes on that fork.
 When you have changes to give back please submit a pull request.
+
+***********************
+Changelog
+***********************
+
+GHERR20- update event loading
