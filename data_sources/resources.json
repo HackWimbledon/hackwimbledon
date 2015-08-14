@@ -40,7 +40,7 @@
     {
       "category-title" : "Raspberry Pi",
       "category-image":"img/raspberrypi_IMG_0885_web.jpg",
-      "category-description" : "Arguably, the most famous hobby microcrontroller, and bred in Cambridge UK. The Raspberry Pi can run both Linux and Windows, and can be powered by NodeJS, Python and C# (and more). There are several variants, with the Pi 2 model B being the current latest.",
+      "category-description" : "Arguably, the most famous hobby microcomputer, and bred in Cambridge UK. The Raspberry Pi can run both Linux and Windows, and can be powered by NodeJS, Python and C# (and more). There are several variants, with the Pi 2 model B being the current latest.",
       "category-links" : [
         {
           "link-title" : "Raspberry Pi Home page",
