@@ -20,7 +20,6 @@ var dateFormat = require('dateformat');
 var linq=require('linq');
 
 var eventsApp=require('./event-app.js')(config,request,dateFormat,linq);
-eventsApp.getEvents();
 
 var sessionStore = new session.MemoryStore;
 
@@ -88,13 +87,18 @@ app.get('/about',function(req, res) {
 });
 
 app.get('/events',function(req, res) {
-  
-  res.render('events', {
-    title: 'HackWimbledon Events',
-    path: req.path,
-    eventsApp: eventsApp,
-    hello:'hello'
-  })
+  // Call getEvents - this now returns the full event list, currentEvent (singular - could just
+  // be the nextEvent), futureEvents and pastEvents. These are all handed over for rendering.
+  eventsApp.getEvents(function(events,currentEvent,futureEvents,pastEvents) {
+    res.render('events', {
+      title: 'HackWimbledon Events',
+      path: req.path,
+      events: events,
+      currentEvent: currentEvent,
+      futureEvents: futureEvents,
+      pastEvents: pastEvents
+    });
+  });
 });
 
 app.get('/chat',function(req, res) {

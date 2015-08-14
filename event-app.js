@@ -2,70 +2,54 @@ module.exports = function(config,request,dateFormat,linq){
   var _currEvents;
   var lastUpdate;
   var _version="1.0.0";
- var self=this;
+  var self=this;
 
-function retrieveEvents() {
-  var apiurl="https://api.meetup.com/2/events?page=30&status=upcoming,past&time=-3m,3m&key="+config.meetupapikey+"&group_urlname="+config.meetupgroup+"&sign=true";
-  request(apiurl, function(error, response, body) {
-    var jj=JSON.parse(body);
-    request(jj.meta.signed_url,function(error, response, eventsjson) {
-      _currEvents= JSON.parse(eventsjson).results;
+  function retrieveEvents(callback) {
+    // Retrieves the events from meetup, updating the stored version in the process
+    // and then sends the event data on to the callback given
+    var apiurl="https://api.meetup.com/2/events?page=30&status=upcoming,past&time=-3m,3m&key="+config.meetupapikey+"&group_urlname="+config.meetupgroup+"&sign=true";
+    request(apiurl, function(error, response, body) {
+      var jj=JSON.parse(body);
+      request(jj.meta.signed_url,function(error, response, eventsjson) {
+        _currEvents= JSON.parse(eventsjson).results;
+        callback(_currEvents);
+      });
     });
-  });
-}
-
-function updateEvents(){
-    _currEvents=retrieveEvents();
-    lastUpdate=new Date();    
-}
-
-function getEvents() {
- if(lastUpdate==undefined){
-	//console.log("initial pop of events");
-        //first run
-	updateEvents();
-	return _currEvents;
   }
-  var dt=new Date();
-  if(dt.getTime()-lastUpdate.getTime()>config.millisecondsPerRefresh ){
-   updateEvents();
-  }else{
-	//console.log("Not update time yet");
-	//console.log(config.millisecondsPerRefresh+"!>"+(dt.getTime()-lastUpdate.getTime()));
-	//console.log("last updated:"+dateFormat(lastUpdate, "dddd, mmmm dS, yyyy, h:MM:ss TT"));
-  }	
-  return _currEvents;
-}
-function getCurrentEvent(){
 
-    var ev=getEvents();
-	var dt=(new Date()).getTime();
-	var fEvent=linq.from(ev).where("e=>e.time>"+dt).toArray();
-	return [fEvent[0]];	
+  function updateEvents(callback){
+    // Is the cache valid - lastUpdate should be set and time within our refresh period.
 
-}
-function getEventsComing(){
-	var ev=getEvents();
-	var dt=(new Date()).getTime();
-	var fEvents=linq.from(ev).where("e=>e.time>"+dt).toArray();
-	fEvents.shift();
-	return fEvents;	
-	}
-function getEventsPast(){
-	var ev=getEvents();
-	var dt=(new Date()).getTime();
-	var fEvents=linq.from(ev).where("e=>e.time<"+dt).orderByDescending("e=>e.time").toArray();
-	
-	return fEvents;	
-	}
+    var dt=new Date();
+    if(lastUpdate!=undefined && dt.getTime()-lastUpdate.getTime()<config.millisecondsPerRefresh ){
+        callback(_currEvents);
+        return;
+    }
 
+    // Not fresh so lets update the events...
 
+    retrieveEvents(function (currEvents) {
+      lastUpdate=new Date();
+      callback(currEvents);   
+      });
+  }
+
+  function getEvents(callback) {
+      // Just calls updateEvents and lets that work out whether it should. Gets back the
+      // full list of events which it then parses into the three other event lists,
+      // current/next, future and past and returns them via a callback
+    	updateEvents(function(currEvents) {
+        dt=(new Date()).getTime();
+        currentEvent=(linq.from(currEvents).where("e=>e.time>"+dt).toArray())[0];
+        futureEvents=linq.from(currEvents).where("e=>e.time>"+currentEvent.time).toArray();
+        pastEvents=linq.from(currEvents).where("e=>e.time<"+dt).orderByDescending("e=>e.time").toArray();
+        callback(currEvents,currentEvent,futureEvents,pastEvents);
+      });
+  }
+  
   var objToRet={
      version:_version,
      getEvents:getEvents,
-     getEventsComing:getEventsComing,
-     getEventsPast:getEventsPast,
-     getCurrentEvent:getCurrentEvent,
      updateEvents:updateEvents,
      currentEvents:_currEvents,
      dateFormat:dateFormat
