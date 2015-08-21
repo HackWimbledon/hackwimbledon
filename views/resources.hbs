@@ -12,35 +12,36 @@
   	  	  	</p>
 	  	  	<br>
 
-		</div>
+		  </div>
 
-		<div class="col-md-12">
+		  <div class="col-md-12">
 
-            {{#each resources }}
-            	<section class="panel panel-primary">
-            		<header class="panel-heading">
-                		<span class="h3">{{ category-title }}</span>
-                	</header>
-                	<div class="panel-body">
-                		{{#if category-image}}<img src='{{category-image}}' class="category-image"/>{{/if}}
-				{{ category-description }}
-              		</div>
-			        <ul class="list-group">
-			        	{{#each category-links}}
-			                <li class="list-group-item">
-			                	<span class="h4"><strong>{{this.link-title}}</strong></span>
-			                	<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-			                	<a class="" target=_blank href="{{ this.link-url }}"><strong>{{ this.link-url }}</strong></a>
-			                	<p>
-			                	{{{this.link-description}}}
-			                </li>
-			            {{/each}}
-			        </ul>
+          {{#each resources }}
+              <section class="panel panel-primary">
+                  <header class="panel-heading">
+                		  <span class="h3">{{ category-title }}</span>
+                  </header>
+                  <div class="panel-body">
+                		  {{#if category-image}}
+                          <img src='{{category-image}}' class="category-image"/>
+                      {{/if}}
+				              {{ category-description }}
+              	  </div>
+			            <ul class="list-group">
+			        	      {{#each category-links}}
+			                    <li class="list-group-item">
+			                        <span class="h4"><strong>{{this.link-title}}</strong></span>
+                              <br>
+			                	      <a class="" target=_blank href="{{ this.link-url }}"><strong>{{ this.link-url }}</strong></a>
+			                	      <p>
+			                	      {{{this.link-description}}}
+			                    </li>
+			                {{/each}}
+			            </ul>
+              </section>
+          {{/each}}
 
-                </section>
-            {{/each}}
-
-        </div>
+      </div>
 
     </div>
 
