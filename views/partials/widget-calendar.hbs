@@ -1,7 +1,7 @@
 <!-- Events App version:{{eventsApp.version}}-->
-<div class="sml-col-12">
+
  <div class="current">
-    <h3>Current Event</h3>
+    <h3>Next event</h3>
     <ul class="evt-calendar">
 	<li>
 		<div class="event-title"><a title="{{currentEvent.name}}" href="{{currentEvent.event_url}}"><img class="meetup-logo" title="meetup" src="http://photos2.meetupstatic.com/photos/event/4/2/6/highres_147421062.jpeg"/>{{currentEvent.name}}</a></div>
@@ -14,7 +14,9 @@
 		-->
     </ul>
 </div>
+
 <br clear="both"/>
+
     <div class="upcoming">
     <h3>Future events</h3>
     <ul class="evt-calendar">
@@ -28,7 +30,9 @@
         {{/each}}
     </ul>
 </div>
+
 <br clear="both"/>
+
 <div class="previous">
     <h3>Previous events</h3>
     <ul class="evt-calendar">
@@ -41,4 +45,4 @@
         {{/each}}
     </ul>
 	</div>	
-</div>
+
