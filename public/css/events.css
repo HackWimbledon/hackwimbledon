@@ -72,9 +72,19 @@
         font-size:1em;
     }
 
-	.events-container .evt-calendar .event-description {
-		display:none;
+	.events-container .current .evt-calendar .event-description, .events-container .upcoming .evt-calendar .event-description {
+        height: 100px;
+        overflow-y: scroll;
+        padding: 5px 15px;
+        margin: 5px 0px;
+        border-left: 5px solid #ccc;
+        background-color: #F9F9F9
 	}
+
+    .events-container .previous .evt-calendar .event-description {
+        display: none;
+	}
+
 
     .events-container .upcoming .evt-calendar li, .events-container .previous .evt-calendar li {
 	    margin-bottom:20px;
