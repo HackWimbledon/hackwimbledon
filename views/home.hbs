@@ -4,11 +4,21 @@
   <h1><img src="/img/hackws128transp.png"></img> at a glance</h1>
 
 <h2>Next Event</h2>
-  <p>When:  <b>August 15</b> 11am-4pm</p>
-  <p>What:  Swipe Too - The Enswipening - We'll be looking more at making the CoffeeHack card reader project work</p>
-  <p>Where: MAE Wimbledon</p>
-  <p>You:   Signup at <a href="http://www.meetup.com/HackWimbledon/events/223886544/">Meetup</a></p>
-  <br/>
+  <ul class="evt-calendar">
+    {{#if currentEvent}}
+      <li>
+        <div class="event-title"><a title="{{currentEvent.name}}" href="{{currentEvent.event_url}}">{{currentEvent.name}}</a></div>
+            <div class="event-time"><time>{{hbDateFormat currentEvent.time}}</time></div>
+        <div class="event-loc"><a target="map" href="https://www.google.co.uk/maps/place/Wimbledon,+London+SW19+7NB/@51.4224528,-0.207775,17z/data=!3m1!4b1!4m2!3m1!1s0x487608b707872fa7:0x58fa72b6accbeec">{{currentEvent.venue.address_1}}, {{currentEvent.venue.city}}</a></div>
+            <div class="event-description">{{{currentEvent.description}}}</div>
+        </li>
+    {{else}}
+        <li>
+            Details coming soon, but there should be an event every two weeks.
+        </li>
+    {{/if}}
+ </ul>
+
   <H2>HackWimbledon News</H2>
   <ul>
     <li>We're in our new digs at MAE Wimbledon where <a href="http://wimbletech.com">Wimbletech</a> expanded into.

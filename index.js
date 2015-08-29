@@ -73,10 +73,13 @@ app.get('/', function(req, res) {
 });
 
 app.get('/home', function(req, res) {
-  res.render('home', {
-    title: 'HackWimbledon Home',
-    path: req.path
-    })
+  eventsApp.getEvents(function(events,currentEvent,futureEvents,pastEvents) {
+    res.render('home', {
+      title: 'HackWimbledon Home',
+      path: req.path,
+      currentEvent: currentEvent
+    });
+  })
 });
 
 app.get('/about',function(req, res) {
