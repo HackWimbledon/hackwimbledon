@@ -30,7 +30,7 @@ module.exports = function(config,request,dateFormat,linq){
 
     retrieveEvents(function (currEvents) {
       lastUpdate=new Date();
-      callback(currEvents);   
+      callback(currEvents);
       });
   }
 
@@ -40,13 +40,14 @@ module.exports = function(config,request,dateFormat,linq){
       // current/next, future and past and returns them via a callback
     	updateEvents(function(currEvents) {
         dt=(new Date()).getTime();
-        currentEvent=(linq.from(currEvents).where("e=>e.time>"+dt).toArray())[0];
-        futureEvents=linq.from(currEvents).where("e=>e.time>"+currentEvent.time).toArray();
-        pastEvents=linq.from(currEvents).where("e=>e.time<"+dt).orderByDescending("e=>e.time").toArray();
+        currentEvent=(linq.from(currEvents).where("e=>e.time > " + dt).toArray())[0];
+//        futureEvents=linq.from(currEvents).where("e=>e.time>"+currentEvent.time).toArray();
+        futureEvents=(linq.from(currEvents).where("e=>e.time > " + dt).toArray().slice(1));
+        pastEvents=linq.from(currEvents).where("e=>e.time < " + dt).orderByDescending("e=>e.time").toArray();
         callback(currEvents,currentEvent,futureEvents,pastEvents);
       });
   }
-  
+
   var objToRet={
      version:_version,
      getEvents:getEvents,
