@@ -1,4 +1,4 @@
-module.exports = function(config,request,dateFormat,linq){
+module.exports = function(config,request,dateFormat,linq) {
   var _currEvents;
   var lastUpdate;
   var _version="1.0.0";
@@ -38,14 +38,14 @@ module.exports = function(config,request,dateFormat,linq){
       // Just calls updateEvents and lets that work out whether it should. Gets back the
       // full list of events which it then parses into the three other event lists,
       // current/next, future and past and returns them via a callback
-    	updateEvents(function(currEvents) {
+      // Current event becomes past event at end time of event (start time + duration), not start time.
+    updateEvents(function(currEvents) {
         dt=(new Date()).getTime();
-        currentEvent=(linq.from(currEvents).where("e=>e.time > " + dt).toArray())[0];
-//        futureEvents=linq.from(currEvents).where("e=>e.time>"+currentEvent.time).toArray();
-        futureEvents=(linq.from(currEvents).where("e=>e.time > " + dt).toArray().slice(1));
-        pastEvents=linq.from(currEvents).where("e=>e.time < " + dt).orderByDescending("e=>e.time").toArray();
+        currentEvent=(linq.from(currEvents).where("e => (e.time + e.duration) > " + dt).toArray())[0];
+        futureEvents=(linq.from(currEvents).where("e => (e.time + e.duration) > " + dt).toArray().slice(1));
+        pastEvents=linq.from(currEvents).where("e => (e.time + e.duration) < " + dt).orderByDescending("e => e.time").toArray();
         callback(currEvents,currentEvent,futureEvents,pastEvents);
-      });
+    });
   }
 
   var objToRet={
