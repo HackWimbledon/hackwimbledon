@@ -1,4 +1,4 @@
-<div class="container events-container">
+<div class="container events-wrapper">
 
     <div class="row">
 
@@ -24,7 +24,14 @@
 
         <div class="col-md-12">
 
-            {{> widget_calendar}}
+            <h3>Next event</h3>
+            {{> widget_calendar_current}}
+
+            <h3>Previous events</h3>
+            {{> widget_calendar_future}}
+
+            <h3>Future events</h3>
+            {{> widget_calendar_past}}
 
         </div>
 

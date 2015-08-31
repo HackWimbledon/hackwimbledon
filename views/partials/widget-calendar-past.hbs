@@ -1,0 +1,17 @@
+<!-- Events App version:{{eventsApp.version}}-->
+
+<div class="previous">
+
+    <ul class="evt-calendar">
+
+        {{#each pastEvents}}
+            <li>
+                <div class="event-title"><a title="{{this.name}}" href="{{this.event_url}}"><img title="meetup" class="meetup-logo" src="http://photos2.meetupstatic.com/photos/event/4/2/6/highres_147421062.jpeg"/>{{this.name}}</a></div>
+		<div class="event-time"><time>{{hbDateFormatShort this.time}}</time></div>
+                <div class="event-description">{{{this.description}}}</div>
+            </li>
+        {{/each}}
+
+    </ul>
+
+</div>
