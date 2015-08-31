@@ -15,24 +15,13 @@
             <div class="col-md-6">
 
             <h2>Next Event</h2>
+
                 <div class="events-wrapper">
 
-                    <ul class="evt-calendar">
+                    {{> widget_calendar_current}}
 
-                        {{#if currentEvent}}
-                            <li>
-                                <div class="event-title"><a title="{{currentEvent.name}}" href="{{currentEvent.event_url}}">{{currentEvent.name}}</a></div>
-                                <div class="event-time"><time>{{hbDateFormat currentEvent.time}}</time></div>
-                                <div class="event-loc"><a target="map" href="https://www.google.co.uk/maps/place/Wimbledon,+London+SW19+7NB/@51.4224528,-0.207775,17z/data=!3m1!4b1!4m2!3m1!1s0x487608b707872fa7:0x58fa72b6accbeec">{{currentEvent.venue.address_1}}, {{currentEvent.venue.city}}</a></div>
-                                <div class="event-description">{{{currentEvent.description}}}</div>
-                            </li>
-                        {{else}}
-                            <li>
-                                Details coming soon, but there is usually an event every two weeks.
-                            </li>
-                        {{/if}}
-                    </ul>
-            </div>
+                </div>
+
         </div>
 
         <div class="col-md-6">
