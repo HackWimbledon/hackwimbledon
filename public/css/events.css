@@ -7,7 +7,7 @@
  }
 
  .events-wrapper h3 {
-     font-weight:900;
+     font-weight:700;
      color:#444;
      margin-top: 0px;
  }
@@ -18,11 +18,11 @@
 }
 
 .events-wrapper .evt-calendar .event-time {
-    font-size:1em;
+    font-size: 1em;
 }
 
 .events-wrapper .evt-calendar .event-title {
-    font-size:1em;
+    font-size: 1em;
     font-family: 'Lobster', cursive;
 }
 
@@ -77,11 +77,11 @@
     }
 
     .events-wrapper .event-title {
-    	font-size:1.5em;
+    	font-size: 1.5em;
     }
 
     .events-wrapper h3 {
-        font-weight:700;
+        font-weight:900;
         width:100%;
     }
 
