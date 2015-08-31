@@ -1,6 +1,6 @@
-@media(max-width:767px) {
+/* Mobile first - standard Bootstrap */
 
-  .jumbotron {
+.jumbotron {
       background-image: url("/img/hwback.jpg");
       color: white;
       background-size: cover;
@@ -8,57 +8,22 @@
       text-shadow: 0px 2px 2px black;
 	  padding-left: 10px;
 	  padding-right: 10px;
-  }
+}
 
-  .jumbotron h1, .jumbotron p {
+.jumbotron h1, .jumbotron p {
     text-align: center;
-  }
+}
 
-  .jumbotron img {
+.jumbotron img {
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
     margin-bottom: 15px
-  }
+}
 
-  .btn {
+.btn {
       white-space: normal;
-  }
-
-}
-
-/* Small */
-@media(min-width:768px) and (max-width:991px) {
-  .jumbotron {
-      background-image: url("/img/hwback.jpg");
-      color: white;
-      background-size: cover;
-      background-position: center;
-      text-shadow: 0px 2px 2px black;
-  }
-}
-
-/* Medium */
-@media(min-width:992px) and (max-width:1199px) {
-  .jumbotron {
-      background-image: url("/img/hwback2.jpg");
-      color: white;
-      background-size: cover;
-      background-position: center;
-      text-shadow: 0px 2px 2px black;
-    }
-}
-
-/* Large */
-@media(min-width:1200px){
-    .jumbotron {
-        background-image: url("/img/hwback2.jpg");
-        color: white;
-        background-size: cover;
-        background-position: center;
-        text-shadow: 0px 2px 2px black;
-      }
 }
 
 .navbar-brand {
@@ -76,4 +41,37 @@ h2 {
 .brandname {
   font-family: 'Lobster', cursive;
   font-size: larger;
+}
+
+
+/* Mobile Landscape and larger - non-standard Bootstrap breakpoint */
+@media(min-width:400px) {
+
+}
+
+
+/* Small and larger - standard Boostrap breakpoint */
+@media(min-width:768px) {
+
+    .jumbotron {
+    	  padding-left: 0px;
+    	  padding-right: 0px;
+    }
+
+}
+
+
+/* Medium and larger - standard Bootstrap breakpoint */
+@media(min-width:992px) {
+
+    .jumbotron {
+        background-image: url("/img/hwback2.jpg");
+    }
+
+}
+
+
+/* Large - standard Bootstrap breakpoint */
+@media(min-width:1200px) {
+
 }

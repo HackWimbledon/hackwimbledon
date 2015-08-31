@@ -1,32 +1,37 @@
+/* Mobile first - standard Bootstrap */
+
 .about-container .button {
     margin-bottom: 20px;
  }
 
+ .about-container img {
+     margin-top: 15px;
+     margin-bottom: 15px;
+  }
 
-/* Mobile */
-@media(max-width:449px) {
+
+/* Mobile Landscape and larger - non-standard Bootstrap breakpoint */
+@media(min-width:400px) {
 
     .about-container img {
-        margin-top: 15px;
-        margin-bottom: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
      }
 
 }
 
 
-/* Small */
-@media(min-width:450px) and (max-width:991px) {
-
+/* Small and larger - standard Boostrap breakpoint */
+@media(min-width:768px) {
 }
 
 
-/* Medium */
-@media(min-width:992px) and (max-width:1199px) {
-
+/* Medium and larger - standard Bootstrap breakpoint */
+@media(min-width:992px) {
 }
 
 
-/* Large */
+/* Large - standard Bootstrap breakpoint */
 @media(min-width:1200px) {
 
 }

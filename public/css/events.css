@@ -1,5 +1,37 @@
-.events-wrapper h1 {
+/* Mobile first - standard Bootstrap */
 
+.events-wrapper .evt-calendar {
+    padding-bottom: 8px;
+    padding-left: 0px;
+    list-style-type:none;
+ }
+
+ .events-wrapper h3 {
+     font-weight:900;
+     color:#444;
+     margin-top: 0px;
+ }
+
+.events-wrapper .upcoming, .events-wrapper .previous {
+    float:left;
+    width:100%;
+}
+
+.events-wrapper .evt-calendar .event-time {
+    font-size:1em;
+}
+
+.events-wrapper .evt-calendar .event-title {
+    font-size:1em;
+    font-family: 'Lobster', cursive;
+}
+
+.events-wrapper .evt-calendar .event-description {
+	margin-top: 5px;
+}
+
+.events-wrapper .upcoming .evt-calendar li, .events-wrapper .previous .evt-calendar li {
+    margin-bottom:30px;
 }
 
 .events-wrapper .meetup-logo {
@@ -8,92 +40,69 @@
     margin-right:5px;
 }
 
-.events-wrapper .evt-calendar {
-	list-style-type:none;
-}
-
-.events-wrapper .evt-calendar .event-time {
-	font-size:0.9em;
-	font-weight:800;
-}
-
-.events-wrapper .event-title {
-	font-size:1.5em;
-	font-family: 'Lobster', cursive;
-}
-
-.events-wrapper h3 {
-    font-weight:900;
-    margin-top: 0px;
-}
-
-.events-wrapper .upcoming .evt-calendar li, .events-wrapper .previous .evt-calendar li {
-    margin-bottom:30px;
-}
-
-.events-wrapper .evt-calendar .event-description {
-	margin-top: 5px;
+.events-wrapper .previous .evt-calendar .event-description {
+    display: none;
 }
 
 
+/* Mobile portrait only */
+@media(max-width:399px) {
 
-/* Mobile */
-@media(max-width:400px) {
+    .events-wrapper .current .evt-calendar .event-description, .events-wrapper .upcoming .evt-calendar .event-description {
+        height: 100px;
+        overflow-y: scroll;
+        padding: 5px 15px;
+        margin: 5px 0px;
+        border-left: 5px solid #ccc;
+        background-color: #F9F9F9
+    }
+
+}
+
+
+/* Mobile Landscape and larger - non-standard Bootstrap breakpoint */
+@media(min-width:400px) {
+
+    .events-wrapper .previous .evt-calendar .event-description {
+        display: block;
+    }
 
     .events-wrapper .evt-calendar {
-        padding-bottom: 8px;
-        padding-left: 0px;
+        padding-left: 40px;
      }
+
+    .events-wrapper .evt-calendar .event-time {
+    	font-size:0.9em;
+    	font-weight:800;
+    }
+
+    .events-wrapper .event-title {
+    	font-size:1.5em;
+    }
 
     .events-wrapper h3 {
         font-weight:700;
-        color:#444;
         width:100%;
     }
-
-    .events-wrapper .upcoming, .events-wrapper .previous {
-        float:left;
-        width:100%;
-    }
-
-    .events-wrapper .evt-calendar .event-time {
-        font-size:1em;
-    }
-
-    .events-wrapper .evt-calendar .event-title {
-        font-size:1em;
-    }
-
-    .events-wrapper .current .evt-calendar .event-description, .events-wrapper .upcoming .evt-calendar .event-description {
-	height: 100px;
-	overflow-y: scroll;
-	padding: 5px 15px;
-	margin: 5px 0px;
-	border-left: 5px solid #ccc;
-	background-color: #F9F9F9
-    }
-
-    .events-wrapper .previous .evt-calendar .event-description {
-        display: none;
-	}
 
     .events-wrapper .upcoming .evt-calendar li, .events-wrapper .previous .evt-calendar li {
-	    margin-bottom:20px;
+        margin-bottom:20px;
     }
 
 }
 
-/* Small */
-@media(min-width:768px) and (max-width:991px) {
 
+/* Small and larger - standard Boostrap breakpoint */
+@media(min-width:768px) {
 }
 
-/* Medium */
-@media(min-width:992px) and (max-width:1199px) {
 
+/* Medium and larger - standard Bootstrap breakpoint */
+@media(min-width:992px) {
 }
 
-/* Large */
+
+/* Large - standard Bootstrap breakpoint */
 @media(min-width:1200px) {
 
 }

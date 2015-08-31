@@ -1,5 +1,4 @@
-.resources-wrapper {
-}
+/* Mobile first - standard Bootstrap */
 
 .resources-wrapper .category-image {
 	width:100%;
@@ -15,4 +14,28 @@
 /* Fixes long URLs overflowing resource table in Safari on iPhone */
 .resources-container li a {
 	word-wrap: break-word;
+}
+
+
+/* Mobile Landscape and larger - non-standard Bootstrap breakpoint */
+@media(min-width:400px) {
+
+}
+
+
+/* Small and larger - standard Boostrap breakpoint */
+@media(min-width:768px) {
+
+}
+
+
+/* Medium and larger - standard Bootstrap breakpoint */
+@media(min-width:992px) {
+
+}
+
+
+/* Large - standard Bootstrap breakpoint */
+@media(min-width:1200px) {
+
 }
