@@ -1,6 +1,7 @@
 /* Mobile first - standard Bootstrap */
 
 .events-wrapper .evt-calendar {
+    margin-bottom: 20px;
     padding-bottom: 8px;
     padding-left: 0px;
     list-style-type:none;
@@ -30,8 +31,8 @@
 	margin-top: 5px;
 }
 
-.events-wrapper .upcoming .evt-calendar li, .events-wrapper .previous .evt-calendar li {
-    margin-bottom:30px;
+.events-wrapper .upcoming .evt-calendar li, .events-wrapper .previous .evt-calendar li, .events-wrapper .current .evt-calendar li {
+    margin-bottom:20px;
 }
 
 .events-wrapper .meetup-logo {
@@ -44,17 +45,19 @@
     display: none;
 }
 
+.events-wrapper .current .evt-calendar .description-button, .events-wrapper .upcoming .evt-calendar .description-button {
+    margin-top: 5px;
+}
+
 
 /* Mobile portrait only */
 @media(max-width:399px) {
 
     .events-wrapper .current .evt-calendar .event-description, .events-wrapper .upcoming .evt-calendar .event-description {
-        height: 100px;
-        overflow-y: scroll;
         padding: 5px 15px;
         margin: 5px 0px;
         border-left: 5px solid #ccc;
-        background-color: #F9F9F9
+        background-color: #FAFAFA
     }
 
 }
@@ -63,7 +66,11 @@
 /* Mobile Landscape and larger - non-standard Bootstrap breakpoint */
 @media(min-width:400px) {
 
-    .events-wrapper .previous .evt-calendar .event-description {
+    .events-wrapper .current .evt-calendar .description-button, .events-wrapper .upcoming .evt-calendar .description-button {
+        display: none;
+    }
+
+    .events-wrapper .current .evt-calendar .event-description, .events-wrapper .previous .evt-calendar .event-description {
         display: block;
     }
 
@@ -76,7 +83,7 @@
     	font-weight:800;
     }
 
-    .events-wrapper .event-title {
+    .events-wrapper .evt-calendar .event-title {
     	font-size: 1.5em;
     }
 
@@ -85,20 +92,18 @@
         width:100%;
     }
 
-    .events-wrapper .upcoming .evt-calendar li, .events-wrapper .previous .evt-calendar li {
-        margin-bottom:20px;
-    }
-
 }
 
 
 /* Small and larger - standard Boostrap breakpoint */
 @media(min-width:768px) {
+
 }
 
 
 /* Medium and larger - standard Bootstrap breakpoint */
 @media(min-width:992px) {
+
 }
 
 
