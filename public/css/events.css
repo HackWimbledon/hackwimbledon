@@ -45,7 +45,7 @@
     display: none;
 }
 
-.events-wrapper .current .evt-calendar .description-button {
+.events-wrapper .current .evt-calendar .description-button, .events-wrapper .upcoming .evt-calendar .description-button {
     margin-top: 5px;
 }
 
@@ -66,7 +66,7 @@
 /* Mobile Landscape and larger - non-standard Bootstrap breakpoint */
 @media(min-width:400px) {
 
-    .events-wrapper .current .evt-calendar .description-button {
+    .events-wrapper .current .evt-calendar .description-button, .events-wrapper .upcoming .evt-calendar .description-button {
         display: none;
     }
 
