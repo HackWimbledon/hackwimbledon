@@ -44,10 +44,15 @@
     display: none;
 }
 
+.events-wrapper .current .evt-calendar .description-button {
+    margin-top: 5px;
+}
+
 
 /* Mobile portrait only */
 @media(max-width:399px) {
 
+/*
     .events-wrapper .current .evt-calendar .event-description, .events-wrapper .upcoming .evt-calendar .event-description {
         height: 100px;
         overflow-y: scroll;
@@ -56,12 +61,20 @@
         border-left: 5px solid #ccc;
         background-color: #F9F9F9
     }
-
+*/
 }
 
 
 /* Mobile Landscape and larger - non-standard Bootstrap breakpoint */
 @media(min-width:400px) {
+
+    .events-wrapper .current .evt-calendar .description-button {
+        display: none;
+    }
+
+    .events-wrapper .current .evt-calendar .description-text {
+        display: block;
+    }
 
     .events-wrapper .previous .evt-calendar .event-description {
         display: block;
