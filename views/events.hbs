@@ -1,4 +1,4 @@
-<div class="container events-container">
+<div class="container events-wrapper">
 
     <div class="row">
 
@@ -15,16 +15,28 @@
             </p>
             <a href="http://meetup.com/hackwimbledon"><button class="button btn-primary btn-lg">Go to Meetup to sign up</button></a>
             <br><br><br>
+
         </div>
+
     </div>
 
     <div class="row">
-        <div class="col-md-8">
-            {{> widget_calendar}}
-        </div>
 
-    </div>
+        <div class="col-md-12">
+
+            <h3>Next event</h3>
+            {{> widget_calendar_current}}
+
+            <h3>Future events</h3>
+            {{> widget_calendar_future}}
+
+            <h3>Previous events</h3>
+            {{> widget_calendar_past}}
+
+        </div>
 
     </div>
 
 </div>
+
+{{> widget_calendar_script}}

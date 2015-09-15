@@ -1,37 +1,33 @@
 /* Mobile first - standard Bootstrap */
 
-.resources-wrapper .category-image {
-	width:100%;
-	overflow:hidden;
-	margin-bottom: 10px;
-}
+.about-container .button {
+    margin-bottom: 20px;
+ }
 
-.resources-wrapper .panel-heading .h3 {
-	font-size:1.5em;
-	font-family: 'Lobster', cursive;
-}
-
-/* Fixes long URLs overflowing resource table in Safari on iPhone */
-.resources-container li a {
-	word-wrap: break-word;
-}
+ .about-container img {
+     margin-top: 15px;
+     margin-bottom: 15px;
+  }
 
 
 /* Mobile Landscape and larger - non-standard Bootstrap breakpoint */
 @media(min-width:400px) {
+
+    .about-container img {
+        margin-top: 0px;
+        margin-bottom: 0px;
+     }
 
 }
 
 
 /* Small and larger - standard Boostrap breakpoint */
 @media(min-width:768px) {
-
 }
 
 
 /* Medium and larger - standard Bootstrap breakpoint */
 @media(min-width:992px) {
-
 }
 
 

@@ -1,0 +1,13 @@
+<script type="text/javascript" charset="utf-8">
+    $(document).ready( function() {
+
+        $('.event-description').on('hide.bs.collapse', function () {
+            $(this).siblings(".description-button").children(".description-icon").removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-right");
+        });
+        $('.event-description').on('show.bs.collapse', function () {
+            $(this).siblings(".description-button").children(".description-icon").removeClass("glyphicon-triangle-right").addClass("glyphicon-triangle-bottom");
+        });
+
+    });
+
+</script>

@@ -1,0 +1,28 @@
+<!-- Events App version:{{eventsApp.version}}-->
+
+<div class="upcoming">
+
+    <ul class="evt-calendar">
+
+        {{#if futureEvents}}
+            {{#each futureEvents}}
+                <li>
+                    <div class="event-title"><a title="{{this.name}}" href="{{this.event_url}}"><img class="meetup-logo" title="meetup" src="http://photos2.meetupstatic.com/photos/event/4/2/6/highres_147421062.jpeg"/>{{this.name}}</a></div>
+    		        <div class="event-time"><time>{{hbDateFormat this.time}}</time></div>
+                    {{#if this.description}}
+                        <button class="description-button btn btn-success btn-xs" type="button" data-toggle="collapse" data-target="#{{@index}}future-description-text" aria-expanded="false" aria-controls="{{@index}}future-description-text">
+                            <span class="description-icon glyphicon glyphicon-triangle-right"></span> Details
+                        </button>
+                        <div id="{{@index}}future-description-text" class="collapse event-description">{{{this.description}}}</div>
+                    {{/if}}
+                </li>
+            {{/each}}
+        {{else}}
+            <li>
+                Details coming soon.
+            </li>
+        {{/if}}
+
+    </ul>
+
+</div>
