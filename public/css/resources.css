@@ -12,7 +12,7 @@
 }
 
 /* Fixes long URLs overflowing resource table in Safari on iPhone */
-.resources-container li a {
+.resources-wrapper li a {
 	word-wrap: break-word;
 }
 
