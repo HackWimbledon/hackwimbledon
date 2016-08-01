@@ -1,0 +1,13 @@
+<div class="container">
+<h1>{{project.name}}</h1>
+<p>
+  {{project.desc}}
+</p>
+
+{{#if project.repo}}
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href={{project.repo}}/fork data-icon="octicon-repo-forked">Fork</a>
+{{/if}}
+
+</div>
+<script async defer src="https://buttons.github.io/buttons.js"></script>

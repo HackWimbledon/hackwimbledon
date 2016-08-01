@@ -1,0 +1,12 @@
+  {
+      "website": {
+          "name": "The Website Hack",
+          "repo": "https://github.com/codepope/hackwimbledon",
+          "desc": "Placeholder Description"
+      },
+      "rockets": {
+          "name": "rockets! rockets! rockets!",
+          "repo": null,
+          "desc": "Test"
+      }
+  }
