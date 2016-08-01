@@ -2,11 +2,13 @@
       "website": {
           "name": "The Website Hack",
           "repo": "https://github.com/codepope/hackwimbledon",
+          "organiser":"DJ",
           "desc": "Placeholder Description"
       },
       "rockets": {
           "name": "rockets! rockets! rockets!",
           "repo": null,
+          "organiser":"Elliot - hopefully",
           "desc": "Test"
       }
   }
