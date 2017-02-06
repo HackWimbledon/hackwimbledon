@@ -25,6 +25,8 @@ var eventsApp = require('./event-app.js')(config, request, dateFormat, linq);
 var sessionStore = new session.MemoryStore;
 var file = 'data_sources/projects.json'
 var projects;
+var news = [];
+
 jsonfile.readFile(file, function(err, obj) {
     if (err) {
         console.log(err)
@@ -90,7 +92,8 @@ app.get('/home', function(req, res) {
         res.render('home', {
             title: 'HackWimbledon Home',
             path: req.path,
-            currentEvent: currentEvent
+            currentEvent: currentEvent,
+						news: news
         });
     })
 });
@@ -230,5 +233,36 @@ app.use(function(error, req, res, next) {
     });
 });
 
-
 app.listen(config.listenport);
+
+// Functions
+
+function readFiles(dirname, onFileContent, onError) {
+	data = []
+  fs.readdir(dirname, function(err, filenames) {
+    if (err) {
+      onError(err);
+      return;
+    }
+    filenames.forEach(function(filename) {
+      fs.readFile(dirname + filename, 'utf-8', function(err, content) {
+        if (err) {
+          onError(err);
+          return;
+        }
+        onFileContent(filename, content);
+      });
+    });
+  });
+}
+
+//Load news from files
+//add a new text file in data_sources/news and it shall appear on the site asif by magic
+readFiles('data_sources/news/', function(filename, content) {
+  news.push({
+		title: filename,
+		body: content
+	});
+}, function(err) {
+  throw err;
+});

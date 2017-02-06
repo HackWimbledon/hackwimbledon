@@ -28,16 +28,11 @@
 
             <H2>HackWimbledon News</H2>
 
+						{{#each news}}
             <div class="well">
-                We're in our new digs at MAE Wimbledon where <a href="http://wimbletech.com">Wimbletech</a> expanded into.
-                The new room is bigger with ensuite coffee, beanbags and even a projector and screen! It's all still being
-                brought up to speed but it's a great improvement for the group!
+                {{body}}
             </div>
-            <div class="well">
-                Ongoing project - The CoffeeHack - We're working with RFID cards to drive an honesty box for coffee donations!
-                Come along to a meeting to check it out.
-            </div>
-
+						{{/each}}
             <a class="twitter-timeline"  href="https://twitter.com/HackWimbledon" data-widget-id="620996615239827457">Tweets by @HackWimbledon</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
