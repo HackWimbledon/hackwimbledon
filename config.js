@@ -11,7 +11,7 @@ module.exports = {
   //   --data 'email=EMAIL&token=TOKEN&set_active=true' \
   //   --compressed
   slacktoken: process.env.SLACK_TOKEN || '',
-  meetupapikey: process.env.MEETUP_APIKEY || '4a1af4d230805b783f65176572e64',
+  meetupapikey: process.env.MEETUP_APIKEY || '',
   meetupgroup: process.env.MEETUP_GROUP || 'hackwimbledon',
   listenport: process.env.HW_PORT || 3000,
   millisecondsPerRefresh: process.env.REFRESH_EVENTS_MILLISECONDS || 3600000,
