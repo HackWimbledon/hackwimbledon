@@ -237,32 +237,7 @@ app.listen(config.listenport);
 
 // Functions
 
-function readFiles(dirname, onFileContent, onError) {
-	data = []
-  fs.readdir(dirname, function(err, filenames) {
-    if (err) {
-      onError(err);
-      return;
-    }
-    filenames.forEach(function(filename) {
-      fs.readFile(dirname + filename, 'utf-8', function(err, content) {
-        if (err) {
-          onError(err);
-          return;
-        }
-        onFileContent(filename, content);
-      });
-    });
-  });
-}
-
-//Load news from files
-//add a new text file in data_sources/news and it shall appear on the site asif by magic
-readFiles('data_sources/news/', function(filename, content) {
-  news.push({
-		title: filename,
-		body: content
-	});
-}, function(err) {
-  throw err;
-});
+// fs.watchFile(newslocation, (curr, prev) => {
+//   console.log(`the current mtime is: ${curr.mtime}`);
+//   console.log(`the previous mtime was: ${prev.mtime}`);
+// });
