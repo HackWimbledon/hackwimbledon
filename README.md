@@ -1,11 +1,10 @@
-[![Stories in Ready](https://badge.waffle.io/codepope/hackwimbledon.png?label=ready&title=Ready)](https://waffle.io/codepope/hackwimbledon)
 # hackwimbledon
 The HackWimbledon website application
 
 This is a application thats being developed by members of HackWimbledon to server as a
 portal for all things HackWimbledon.
 
-Initially we're at the PoC/Design stage making sure we're good to go.
+This site has been running for a while and is now being revamped.
 
 ## Getting going
 
