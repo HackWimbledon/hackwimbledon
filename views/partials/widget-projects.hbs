@@ -1,0 +1,12 @@
+<div class="projectlist">
+    <ul class="projects">
+        {{#each projects}}
+        <li>
+            <div class="project-name">
+                <a title="{{this.nameWithOwner}}" href="{{this.url}}">{{this.name}}</a> ({{this.nameWithOwner}})
+            </div>
+            <div class="project-description">{{this.description}}</div>
+        </li>
+        {{/each}}
+    </ul>
+</div>

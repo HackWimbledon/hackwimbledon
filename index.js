@@ -18,19 +18,11 @@ var session = require('express-session');
 var flash = require('express-flash');
 var dateFormat = require('dateformat');
 var linq = require('linq');
-var jsonfile = require('jsonfile')
 
 var eventsApp = require('./event-app.js')(config, request, dateFormat, linq);
+var projectsApp = require('./projects-app.js')(config)
 
 var sessionStore = new session.MemoryStore;
-var file = 'data_sources/projects.json'
-var projects;
-jsonfile.readFile(file, function(err, obj) {
-    if (err) {
-        console.log(err)
-    }
-    projects = obj
-})
 
 app.set('view engine', 'hbs');
 app.set('view options', {
@@ -49,9 +41,11 @@ hbs.registerHelper('active', function(mypath) {
 hbs.registerHelper('hbDateFormat', function(somedate) {
     return new hbs.SafeString(dateFormat(somedate, "dddd, mmmm dS, yyyy @ HH:MM"));
 });
+
 hbs.registerHelper('hbStringify', function(somejson) {
     return JSON.stringify(somejson);
 });
+
 hbs.registerHelper('hbDateFormatShort', function(somedate) {
     return new hbs.SafeString(dateFormat(somedate, "dddd, mmmm dS, yyyy"));
 });
@@ -86,7 +80,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/home', function(req, res) {
-    eventsApp.getEvents(function(events, currentEvent, futureEvents, pastEvents) {
+    eventsApp.getEvents(function(events, currentEvent) {
         res.render('home', {
             title: 'HackWimbledon Home',
             path: req.path,
@@ -183,25 +177,28 @@ app.post('/chat', function(req, res) {
 });
 
 app.get('/projects', function(req, res) {
-    res.render('projects', {
-        title: 'HackWimbledon Projects',
-        path: req.path
-    })
-});
-
-app.get('/projects/:project', function(req, res) {
-    id = req.params.project;
-    if (projects[id]) {
-        res.render('project', {
+    projectsApp.getProjects(function(projects) {
+        res.render('projects', {
             title: 'HackWimbledon Projects',
             path: req.path,
-            project: projects[id]
+            projects: projects,
         });
-    } else {
-        res.sendStatus(404)
-        res.end();
-    }
+    });
 });
+
+// app.get('/projects/:project', function(req, res) {
+//     let id = req.params.project;
+//     if (projects[id]) {
+//         res.render('project', {
+//             title: 'HackWimbledon Projects',
+//             path: req.path,
+//             project: projects[id]
+//         });
+//     } else {
+//         res.sendStatus(404)
+//         res.end();
+//     }
+// });
 
 app.get('/resources', function(req, res) {
     res.render('resources', {
@@ -221,7 +218,7 @@ app.use(function(req, res) {
 });
 
 // Handle 500
-app.use(function(error, req, res, next) {
+app.use(function(error, req, res) {
     res.status(500);
     res.render('500', {
         title: '500: Internal Server Error',
@@ -230,5 +227,6 @@ app.use(function(error, req, res, next) {
     });
 });
 
+console.log("Hackwimbledon listening on "+config.listenport);
 
 app.listen(config.listenport);
