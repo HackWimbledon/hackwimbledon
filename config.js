@@ -1,8 +1,8 @@
 module.exports = {
   // your community or team name to display on join page.
-  community: process.env.COMMUNITY_NAME || 'Test HackWimbledon',
+  community: process.env.COMMUNITY_NAME || "Test HackWimbledon",
   // your slack team url (ex: socketio.slack.com)
-  slackUrl: process.env.SLACK_URL || '',
+  slackUrl: process.env.SLACK_URL || "",
   // access token of slack
   // You can generate it in https://api.slack.com/web#auth
   //
@@ -10,10 +10,10 @@ module.exports = {
   //   curl -X POST 'https://YOUR-SLACK-TEAM.slack.com/api/users.admin.invite' \
   //   --data 'email=EMAIL&token=TOKEN&set_active=true' \
   //   --compressed
-  slacktoken: process.env.SLACK_TOKEN || '',
-  meetupapikey: process.env.MEETUP_APIKEY || '',
-  githubpat: process.env.GITHUB_PAT || '',
-  meetupgroup: process.env.MEETUP_GROUP || 'hackwimbledon',
+  slacktoken: process.env.SLACK_TOKEN || "",
+  meetupapikey: process.env.MEETUP_APIKEY || "",
+  githubpat: process.env.GITHUB_PAT || "",
+  meetupgroup: process.env.MEETUP_GROUP || "hackwimbledon",
   listenport: process.env.HW_PORT || 3000,
   millisecondsPerRefresh: process.env.REFRESH_EVENTS_MILLISECONDS || 3600000
 };
