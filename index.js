@@ -10,8 +10,6 @@ var config = require('./config');
 
 
 var fs = require('fs');
-var resourcedata = JSON.parse(fs.readFileSync('./data_sources/resources.json', 'utf8'));
-
 
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -23,14 +21,6 @@ var jsonfile = require('jsonfile')
 var eventsApp = require('./event-app.js')(config, request, dateFormat, linq);
 
 var sessionStore = new session.MemoryStore;
-var file = 'data_sources/projects.json'
-var projects;
-jsonfile.readFile(file, function(err, obj) {
-    if (err) {
-        console.log(err)
-    }
-    projects = obj
-})
 
 app.set('view engine', 'hbs');
 app.set('view options', {
