@@ -7,13 +7,10 @@ module.exports = function(config,request,dateFormat,linq) {
   function retrieveEvents(callback) {
     // Retrieves the events from meetup, updating the stored version in the process
     // and then sends the event data on to the callback given
-    var apiurl="https://api.meetup.com/2/events?page=30&status=upcoming,past&time=-3m,3m&key="+config.meetupapikey+"&group_urlname="+config.meetupgroup+"&sign=true";
-    request(apiurl, function(error, response, body) {
-      var jj=JSON.parse(body);
-      request(jj.meta.signed_url,function(error, response, eventsjson) {
-        _currEvents= JSON.parse(eventsjson).results;
+    var apiurl="https://api.meetup.com/hackwimbledon/events?desc=true&page=10&status=upcoming,past&time=-3m,3m";
+    request(apiurl, function(error, response, eventsjson) {
+      _currEvents= JSON.parse(eventsjson);
         callback(_currEvents);
-      });
     });
   }
 
@@ -41,8 +38,9 @@ module.exports = function(config,request,dateFormat,linq) {
       // Current event becomes past event at end time of event (start time + duration), not start time.
     updateEvents(function(currEvents) {
         dt=(new Date()).getTime();
-        currentEvent=(linq.from(currEvents).where("e => (e.time + e.duration) > " + dt).toArray())[0];
-        futureEvents=(linq.from(currEvents).where("e => (e.time + e.duration) > " + dt).toArray().slice(1));
+        futures=(linq.from(currEvents).where("e => (e.time + e.duration) > " + dt)).toArray();
+        currentEvent=futures[futures.length-1];
+        futureEvents=futures.slice(0,-1);
         pastEvents=linq.from(currEvents).where("e => (e.time + e.duration) < " + dt).orderByDescending("e => e.time").toArray();
         callback(currEvents,currentEvent,futureEvents,pastEvents);
     });
