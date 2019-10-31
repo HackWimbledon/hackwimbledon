@@ -1,6 +1,7 @@
 //
 // HackWimbledon 2016
 //
+
 const express = require('express');
 const app = express();
 const hbs = require('hbs');
@@ -26,6 +27,7 @@ jsonfile.readFile(file, (err, obj) => {
     }
     projects = obj;
 });
+
 
 app.set('view engine', 'hbs');
 app.set('view options', {

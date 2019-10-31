@@ -6,16 +6,10 @@ module.exports = function(config, request, dateFormat, linq) {
   retrieveEvents = callback => {
     // Retrieves the events from meetup, updating the stored version in the process
     // and then sends the event data on to the callback given
-    const apiurl =
-      'https://api.meetup.com/2/events?page=30&status=upcoming,past&time=-3m,3m&key=' +
-      config.meetupapikey + '&group_urlname=' + config.meetupgroup + '&sign=true';
-
-    request(apiurl, (error, response, body) => {
-      const jj = JSON.parse(body);
-      request(jj.meta.signed_url, (error, response, eventsjson) => {
-        _currEvents= JSON.parse(eventsjson).results;
+    const apiurl="https://api.meetup.com/hackwimbledon/events?desc=true&page=10&status=upcoming,past&time=-3m,3m";
+    request(apiurl, function(error, response, eventsjson) {
+      _currEvents= JSON.parse(eventsjson);
         callback(_currEvents);
-      });
     });
   };
 
@@ -40,16 +34,14 @@ module.exports = function(config, request, dateFormat, linq) {
       // full list of events which it then parses into the three other event lists,
       // current/next, future and past and returns them via a callback
       // Current event becomes past event at end time of event (start time + duration), not start time.
-    updateEvents(currEvents => {
-      dt = (new Date()).getTime();
-      currentEvent =
-        (linq.from(currEvents).where('e => (e.time + e.duration) > ' + dt).toArray())[0];
-      futureEvents =
-        (linq.from(currEvents).where('e => (e.time + e.duration) > ' + dt).toArray().slice(1));
-      pastEvents =
-        linq.from(currEvents).where('e => (e.time + e.duration) < ' + dt)
-          .orderByDescending('e => e.time').toArray();
-      callback(currEvents, currentEvent, futureEvents, pastEvents);
+    updateEvents(function(currEvents) {
+        dt=(new Date()).getTime();
+        futures=(linq.from(currEvents).where("e => (e.time + e.duration) > " + dt)).toArray();
+        currentEvent=futures[futures.length-1];
+        futureEvents=futures.slice(0,-1);
+        pastEvents=linq.from(currEvents).where("e => (e.time + e.duration) < " + dt).orderByDescending("e => e.time").toArray();
+        callback(currEvents,currentEvent,futureEvents,pastEvents);
+
     });
   };
 
