@@ -18,10 +18,17 @@
     "linq": "^3.0.5",
     "request": "^2.60.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-google": "^0.7.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint .",
+    "start": "node index.js"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "6.8.0"
+  }
 }
