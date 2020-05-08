@@ -8,7 +8,7 @@ const hbs = require('hbs');
 const request = require('request');
 const config = require('./config');
 const fs = require('fs');
-const resourcedata = JSON.parse(fs.readFileSync('./data_sources/resources.json', 'utf8'));
+//const resourcedata = JSON.parse(fs.readFileSync('./data_sources/resources.json', 'utf8'));
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
@@ -18,15 +18,15 @@ const jsonfile = require('jsonfile');
 const eventsApp = require('./event-app.js')(config, request, dateFormat, linq);
 
 const sessionStore = new session.MemoryStore;
-const file = 'data_sources/projects.json';
+//const file = 'data_sources/projects.json';
 let projects;
 
-jsonfile.readFile(file, (err, obj) => {
-    if (err) {
-        console.log(err);
-    }
-    projects = obj;
-});
+// jsonfile.readFile(file, (err, obj) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     projects = obj;
+// });
 
 
 app.set('view engine', 'hbs');
@@ -174,6 +174,7 @@ app.post('/chat', (req, res) => {
                     req.flash('error',
                       'Slack does not like the format of that email address. Please try again.');
                 } else {
+                    console.log(body)
                     req.flash('error', 'Problem connecting to Slack. ' +
                       'Please contact HackWimbledon and report "' + body.error + '".');
                 }
@@ -186,34 +187,34 @@ app.post('/chat', (req, res) => {
     }
 });
 
-app.get('/projects', (req, res) => {
-    res.render('projects', {
-        title: 'HackWimbledon Projects',
-        path: req.path
-    });
-});
+// app.get('/projects', (req, res) => {
+//     res.render('projects', {
+//         title: 'HackWimbledon Projects',
+//         path: req.path
+//     });
+// });
 
-app.get('/projects/:project', (req, res) => {
-    id = req.params.project;
-    if (projects[id]) {
-        res.render('project', {
-            title: 'HackWimbledon Projects',
-            path: req.path,
-            project: projects[id]
-        });
-    } else {
-        res.sendStatus(404);
-        res.end();
-    }
-});
+// app.get('/projects/:project', (req, res) => {
+//     id = req.params.project;
+//     if (projects[id]) {
+//         res.render('project', {
+//             title: 'HackWimbledon Projects',
+//             path: req.path,
+//             project: projects[id]
+//         });
+//     } else {
+//         res.sendStatus(404);
+//         res.end();
+//     }
+// });
 
-app.get('/resources', (req, res) => {
-    res.render('resources', {
-        title: 'HackWimbledon Resources',
-        resources: resourcedata,
-        path: req.path
-    });
-});
+// app.get('/resources', (req, res) => {
+//     res.render('resources', {
+//         title: 'HackWimbledon Resources',
+//         resources: resourcedata,
+//         path: req.path
+//     });
+// });
 
 // Handle 404
 app.use((req, res) => {
