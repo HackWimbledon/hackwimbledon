@@ -1,18 +1,7 @@
-ARG VERSION="current"
-FROM node:$VERSION-alpine
+FROM pierrezemb/gostatic 
 
-WORKDIR /app
+COPY index.html /srv/http/index.html
+COPY css /srv/http/css
+COPY img /srv/http/img
 
-COPY package.json .
-COPY package-lock.json .
-
-COPY data_sources /data_sources/
-
-RUN npm install --production
-
-COPY . .
-
-ENV PORT=8080
-
-CMD npm start
 

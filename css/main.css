@@ -1,0 +1,77 @@
+/* Mobile first - standard Bootstrap */
+
+.jumbotron {
+      /* background-image: url("/img/hwback.jpg"); */
+      /* color: white; */
+      background-size: cover;
+      background-position: center;
+      /* text-shadow: 0px 2px 2px black; */
+	  padding-left: 10px;
+	  padding-right: 10px;
+}
+
+.jumbotron h1, .jumbotron p {
+    text-align: center;
+}
+
+.jumbotron img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px
+}
+
+.btn {
+      white-space: normal;
+}
+
+.navbar-brand {
+  font-family: 'Lobster', cursive;
+}
+
+h1 {
+  font-family: 'Lobster', cursive;
+}
+
+h2 {
+  font-family: 'Courier';
+}
+
+.brandname {
+  font-family: 'Lobster', cursive;
+  font-size: larger;
+}
+
+
+/* Mobile Landscape and larger - non-standard Bootstrap breakpoint */
+@media(min-width:400px) {
+
+}
+
+
+/* Small and larger - standard Boostrap breakpoint */
+@media(min-width:768px) {
+
+    .jumbotron {
+    	  padding-left: 0px;
+    	  padding-right: 0px;
+    }
+
+}
+
+
+/* Medium and larger - standard Bootstrap breakpoint */
+@media(min-width:992px) {
+
+    .jumbotron {
+        background-image: url("/img/hwback2.jpg");
+    }
+
+}
+
+
+/* Large - standard Bootstrap breakpoint */
+@media(min-width:1200px) {
+
+}

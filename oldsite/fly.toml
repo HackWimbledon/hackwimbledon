@@ -1,7 +1,11 @@
 app = "hackwimbledon"
 
+[build]
+  builder = "cloudfoundry/cnb:bionic"
+
+
 [[services]]
-  internal_port = 8043
+  internal_port = 3000
   protocol = "tcp"
 
   [services.concurrency]
