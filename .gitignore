@@ -28,5 +28,6 @@ node_modules
 
 # Visual Studio Code config files
 .vscode/
-img/.DS_Store
 .gitignore
+img/.DS_Store
+.DS_Store
